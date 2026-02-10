@@ -1,15 +1,12 @@
+
 meta {
-  name: park grid
+  name: get park grid
   type: http
   seq: 1
 }
 
 get {
-  url: localhost:8000/park/grid
+  url: {{baseUrl}}/park/grid
   body: none
-  auth: inherit
-}
-
-settings {
-  encodeUrl: true
+  auth: none
 }
