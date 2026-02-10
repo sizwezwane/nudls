@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "name": "nudls",
+  "name": "bruno-nudls",
   "type": "collection",
   "ignore": [
     "node_modules",
