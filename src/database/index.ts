@@ -8,8 +8,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export let db: Database;
 
 export async function initDb() {
+    const dbPath = process.env.DATABASE_PATH || path.join(__dirname, '../../dinopark.db');
     db = await open({
-        filename: path.join(__dirname, '../../dinopark.db'),
+        filename: dbPath,
         driver: sqlite3.Database
     });
 

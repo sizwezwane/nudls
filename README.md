@@ -57,6 +57,20 @@ npm test
    docker run -d -p 8000:8000 -v $(pwd)/dinopark.db:/app/dinopark.db --name nudls-api dinopark-backend
    ```
 
+## Database Configuration
+
+The application uses **SQLite** for persistence. By default, it creates/uses a file named `dinopark.db` in the project root.
+
+### Customizing the Database Path
+You can specify a custom path for the SQLite database using the `DATABASE_PATH` environment variable:
+
+```bash
+DATABASE_PATH=/path/to/your/database.db npm run start
+```
+
+### Production Database
+For production environments requiring high availability (e.g., AWS RDS), it is recommended to replace the SQLite driver with a robust relational database driver like PostgreSQL. The schema is defined in `src/database/index.ts`.
+
 ## Infrastructure & Uptime
 
 ### 1. Resiliency & Uptime (99.99%)
