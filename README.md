@@ -3,6 +3,8 @@
 
 This is a Python-based backend solution for the Dinopark maintenance system, built with **FastAPI**. It consumes the NUDLS dinosaur feed and exposes a RESTful API for the park dashboard.
 
+**Live Demo**: The API is currently deployed on AWS EC2 at [http://13.245.109.136:8000/docs](http://13.245.109.136:8000/docs).
+
 ## Setup and Running
 
 ### Prerequisites
@@ -56,6 +58,10 @@ Run the test suite using `pytest`:
 ```bash
 TESTING=1 pytest tests/
 ```
+
+### Deployment
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for instructions on how to host this application on AWS.
 
 ---
 
