@@ -18,6 +18,7 @@ dist/
 
 # Packaging
 submission.zip
+DEPLOYMENT.md
 
 # Testing
 .nyc_output

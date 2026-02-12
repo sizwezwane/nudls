@@ -2,6 +2,12 @@
 
 This is a Node.js/TypeScript backend solution for the Dinopark maintenance system. It consumes the NUDLS dinosaur feed and exposes a RESTful API for the park dashboard.
 
+## 🚀 Live Demo
+The API is currently deployed on AWS EC2 at:
+[http://13.245.109.136:8000/](http://13.245.109.136:8000/)
+
+---
+
 ## Tech Stack
 - **Node.js**
 - **TypeScript**
@@ -37,8 +43,6 @@ Run the test suite using `jest`:
 npm test
 ```
 
-## Deployment
-See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions on how to host and update this application on the existing AWS EC2 instance.
 
 ## Running with Docker
 
