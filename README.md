@@ -1,38 +1,65 @@
-# Dinopark Maintenance System (NUDLS Backend)
+# Dinopark Maintenance System
 
-This project provides a backend solution for the Dinopark maintenance system. It is available in two implementations:
+This is a Node.js/TypeScript backend solution for the Dinopark maintenance system. It consumes the NUDLS dinosaur feed and exposes a RESTful API for the park dashboard.
 
-## 📂 Project Structure
+## Tech Stack
+- **Node.js**
+- **TypeScript**
+- **Express**: Web framework
+- **SQLite**: Database persistence
+- **Zod**: Validation and typing
+- **Axios**: HTTP client for feed consumption
+- **Node-cron**: Task scheduling
 
-- **[python-version/](./python-version/)**: The original implementation using **FastAPI** (Python).
-- **[typescript-version/](./typescript-version/)**: A port using **Express** (Node.js/TypeScript).
-- **dinopark.db**: Shared SQLite database used by both implementations.
+## Setup and Running
 
----
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-## 🚀 Live Demo
+2. **Run in development mode**:
+   ```bash
+   npm run dev
+   ```
 
-The API is currently deployed on AWS EC2 (Python version) at:
-[http://13.245.109.136:8000/docs](http://13.245.109.136:8000/docs)
+3. **Run in production mode**:
+   ```bash
+   npm run start
+   ```
 
----
+The API will be available at `http://localhost:8001`.
+- **Park Grid Status**: `http://localhost:8001/park/grid`
 
-## 🛠 Choose Your Version
+## Running with Docker
 
-### Python (FastAPI)
-See the [Python Version README](./python-version/README.md) for setup and running instructions.
-- Default Port: `8000`
+1. **Build the image**:
+   ```bash
+   docker build -t dinopark-backend .
+   ```
 
-### TypeScript (Express)
-See the [TypeScript Version README](./typescript-version/README.md) for setup and running instructions.
-- Default Port: `8001`
+2. **Run the container**:
+   ```bash
+   # Mount the database file for persistence
+   docker run -p 8001:8001 -v $(pwd)/dinopark.db:/app/dinopark.db dinopark-backend
+   ```
 
----
+## Infrastructure & Uptime
 
-## 📝 Approach & Architecture
-Both versions follow the same core logic:
-1. **Feed Consumer**: Robust background polling of the NUDLS feed with state reconstruction.
-2. **Persistence**: Persistent state storage in SQLite.
-3. **API**: RESTful endpoints for the park dashboard, including the real-time grid status.
+### 1. Resiliency & Uptime (99.99%)
 
-For more details on scaling, resiliency, and technical trade-offs, please refer to the version-specific documentation.
+To achieve 100% (or 99.99%) uptime:
+- **Redundancy**: Deploy multiple instances behind a Load Balancer (ELB/ALB).
+- **Managed Database**: Move from local SQLite to a managed service like Amazon RDS (PostgreSQL/MySQL) with Multi-AZ for failover.
+- **Failover**: Use Route53 for DNS-level failover.
+
+### 2. Scaling (1 Million Dinosaurs)
+
+To handle 1M dinosaurs:
+- **Database Indexing**: Ensure spatial and status columns are indexed.
+- **Aggregation Queries**: Perform the "Safe/Unsafe" calculations at the database layer using SQL aggregations instead of loading all data into memory.
+- **Caching**: Use Redis to cache the grid status.
+
+### 3. Firebase Recommendation
+
+While Firebase (Firestore) is great for real-time dashboards, for this safety-critical system, a relational database (SQL) is recommended to ensure strict data consistency and perform complex safety calculations reliably.
