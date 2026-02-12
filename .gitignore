@@ -1,25 +1,36 @@
-
 # Python
 __pycache__/
 *.py[cod]
 *$py.class
+*.so
 
-# Virtual Environment
+# Virtual Environments
 .venv/
 venv/
 ENV/
 env/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.eslintcache
+
+# TypeScript
+dist/
+*.tsbuildinfo
 
 # Database
 *.db
 *.sqlite
 *.sqlite3
 
-# Distribution / Packaging
-.Python
+# Packaging
+submission.zip
 build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
@@ -38,6 +49,7 @@ wheels/
 .coverage
 htmlcov/
 junit/
+.nyc_output
 
 # Environment Variables
 .env
