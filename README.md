@@ -28,8 +28,17 @@ This is a Node.js/TypeScript backend solution for the Dinopark maintenance syste
    npm run start
    ```
 
-The API will be available at `http://localhost:8001`.
-- **Park Grid Status**: `http://localhost:8001/park/grid`
+The API will be available at `http://localhost:8000`.
+- **Park Grid Status**: `http://localhost:8000/park/grid`
+
+## Running Tests
+Run the test suite using `jest`:
+```bash
+npm test
+```
+
+## Deployment
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions on how to host and update this application on the existing AWS EC2 instance.
 
 ## Running with Docker
 
@@ -41,7 +50,7 @@ The API will be available at `http://localhost:8001`.
 2. **Run the container**:
    ```bash
    # Mount the database file for persistence
-   docker run -p 8001:8001 -v $(pwd)/dinopark.db:/app/dinopark.db dinopark-backend
+   docker run -d -p 8000:8000 -v $(pwd)/dinopark.db:/app/dinopark.db --name nudls-api dinopark-backend
    ```
 
 ## Infrastructure & Uptime
